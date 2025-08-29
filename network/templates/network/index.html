@@ -1,0 +1,56 @@
+{% extends "network/layout.html" %}
+
+{% block heading %}
+<div class="container">
+    <h1 id="heading" class="display-4 text-center text-primary font-weight-bold mb-4"></h1>
+</div>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8">
+
+            <!-- New post form -->
+            {% if user.is_authenticated %}
+            <div class="card shadow-sm my-4" id="form-div">
+                <div class="card-body">
+                    <form method="post" id="new-post-form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="content" class="font-weight-bold">New Post</label>
+                            <textarea class="form-control" id="content" rows="3" placeholder="What's on your mind?"></textarea>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-outline-primary px-4">Post</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Profile & Posts section -->
+            <div id="profile-container" class="mb-4"></div>
+            <div id="post-container"></div>
+
+            <!-- Pagination -->
+            <nav aria-label="Page navigation" id="page_nav">
+                <ul class="pagination justify-content-center flex-wrap">
+                    <li class="page-item" id="previous">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" id="current" href="#">1</a></li>
+                    <li class="page-item" id="next">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
